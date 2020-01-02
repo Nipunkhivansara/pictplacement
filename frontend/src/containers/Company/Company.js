@@ -20,7 +20,9 @@ class Company extends Component {
 
     render() {
         return (
+            
             <div>
+                
                 <ProtectedRoute path="/company/dashboard" component={() =>
                     <Dashboard drawerList={this.drawerList}>
                         <Route exact path="/company/dashboard/profile" component={Profile} />

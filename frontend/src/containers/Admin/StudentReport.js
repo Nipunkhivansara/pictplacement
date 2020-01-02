@@ -14,7 +14,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import axios from "../../axios";
-import ReactToPrint from 'react-to-print'
+import ReactToPrint from 'react-to-print';
+import "bootstrap/dist/css/bootstrap.css";
 
 
 import Typography from '@material-ui/core/Typography';
@@ -128,28 +129,28 @@ class StudentReport extends Component {
                                 Company Name: {this.state.company.name}
                             </Typography>
                             <Grid item xs={12}>
-                                <Table className={classes.table}>
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>ID</TableCell>
-                                            <TableCell align="right">Name</TableCell>
-                                            <TableCell align="right">Roll Number</TableCell>
-                                            <TableCell align="right">SGPA</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th align="right">Name</th>
+                                            <th align="right">Roll Number</th>
+                                            <th align="right">SGPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         {this.state.students.map(s => (
-                                            <TableRow key={s.student.rollno}>
-                                                <TableCell component="th" scope="row">
+                                            <tr key={s.student.rollno}>
+                                                <td component="th" scope="row">
                                                     {s.student.rollno}
-                                                </TableCell>
-                                                <TableCell align="right">{s.student.firstName}</TableCell>
-                                                <TableCell align="right">{s.student.rollno}</TableCell>
-                                                <TableCell align="right">{s.sgpaAggregate}</TableCell>
-                                            </TableRow>
+                                                </td>
+                                                <td align="right">{s.student.firstName}</td>
+                                                <td align="right">{s.student.rollno}</td>
+                                                <td align="right">{s.sgpaAggregate}</td>
+                                            </tr>
                                         ))}
-                                    </TableBody>
-                                </Table>
+                                    </tbody>
+                                </table>
                             </Grid>
                         </Grid>
                     </Paper>

@@ -76,35 +76,38 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.login}>
+        
         <div
           style={{
             width: "100%",
             height: "7vh",
-
             font: "Bold",
             fontSize: "4vh",
             fontFamily: "Comicsans",
             color: "white"
           }}
         >
-          <AppBar position="static">
+          
+          <AppBar position="static" style={{backgroundColor:"rgb(70,70,120)"}}>
             <Toolbar variant="dense">
-              <Typography style={{ marginLeft: "2vw" }} variant="h6">
+              <Typography style={{ marginLeft: "2vw" ,fontSize:"20px" }} variant="h5">
                 PUNE INSTITUTE OF COMPUTER TECHNOLOGY PLACEMENT-CELL
               </Typography>
             </Toolbar>
           </AppBar>
         </div>
+
         <Container component="main" maxWidth="xs">
+          
           <CssBaseline />
           <div className={classes.paper}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Pict_logo.png"
               style={{ height: "12vh", width: "7vw", borderRadius: 125 }}
             ></img>{" "}
-            <Typography component="h1" variant="h5">
-              Sign in
+            <Typography component="h1" variant="h5" style={{marginTop:"3vh"}}>
+              SIGN IN
             </Typography>{" "}
             <form
               className={classes.form}
@@ -115,15 +118,17 @@ class Login extends Component {
                 variant="outlined"
                 margin="normal"
                 error={this.state.error}
+                style={{backgroundColor:"rgba(255,255,255,0.8)",borderRadius:"5px"}}
                 required
                 fullWidth
-                label="Id"
+                label="User ID"
                 autoComplete="name"
                 autoFocus
                 onChange={this.changeHandler("username")}
               />
               <TextField
                 variant="outlined"
+                style={{backgroundColor:"rgba(255,255,255,0.8)",borderRadius:"5px"}}
                 margin="normal"
                 required
                 fullWidth
@@ -135,7 +140,7 @@ class Login extends Component {
                 onChange={this.changeHandler("password")}
                 error={this.state.error}
               />
-              <FormControlLabel
+              <FormControlLabel 
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
@@ -143,7 +148,8 @@ class Login extends Component {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
+                style={{outline:"none",backgroundColor:"rgba(50,50,100,1)",color:"white"}}
+                // color= "primary"
                 className={classes.submit}
               >
                 Sign In

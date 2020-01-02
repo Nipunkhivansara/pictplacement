@@ -17,7 +17,8 @@ import Button from "@material-ui/core/Button";
 import axios from "../../axios";
 import { ButtonGroup } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
-import ReactToPrint from 'react-to-print'
+import ReactToPrint from 'react-to-print';
+import "bootstrap/dist/css/bootstrap.css";
 
 const styles = theme => ({
   palette: {
@@ -43,7 +44,9 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing(1),
-    margin: "auto"
+    margin: "auto",
+    backgroundColor:"rgb(70,70,120)",
+    outline:"none"
   },
   group: {
     margin: theme.spacing(1, 0)
@@ -156,28 +159,28 @@ class BranchReport extends Component {
         <div id="blah2">
           <div>
             <Paper className={classes.root}>
-              <Table ref={el => (this.componentRef = el)} className={classes.table} id="printArea">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell align="right">Name</TableCell>
-                    <TableCell align="right">Roll Number</TableCell>
-                    <TableCell align="right">SGPA</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
+              <table ref={el => (this.componentRef = el)} className="table table-bordered" id="printArea">
+                <thead >
+                  <tr>
+                    <th>ID</th>
+                    <th align="right">Name</th>
+                    <th align="right">Roll Number</th>
+                    <th align="right">SGPA</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {this.state.students.map(s => (
-                    <TableRow key={s.student.rollno}>
-                      <TableCell component="th" scope="row">
+                    <tr key={s.student.rollno}>
+                      <td component="th" scope="row">
                         {s.student.rollno}
-                      </TableCell>
-                      <TableCell align="right">{s.student.firstName}</TableCell>
-                      <TableCell align="right">{s.student.rollno}</TableCell>
-                      <TableCell align="right">{s.sgpaAggregate}</TableCell>
-                    </TableRow>
+                      </td>
+                      <td align="right">{s.student.firstName}</td>
+                      <td align="right">{s.student.rollno}</td>
+                      <td align="right">{s.sgpaAggregate}</td>
+                    </tr>
                   ))}
-                </TableBody>
-              </Table>
+                </tbody>
+              </table>
             </Paper>
           </div>
         </div>

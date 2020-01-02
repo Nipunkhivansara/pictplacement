@@ -1,16 +1,26 @@
 body {
   background-color: white;
+ 
   
 }
-
 .paper {
-  margin-top: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10vh;
-}
+  background-color: rgb(240, 240, 240,0.8);
+  padding:20px;
+  border-radius:5px;
 
+}
+.login
+{
+  background-image: url("https://img.collegepravesh.com/2017/02/PICT-Pune.jpg"); 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  
+}
 .avatar {
   margin: 1vh;
   /* background-color: white;*/
@@ -37,13 +47,15 @@ body {
 
 .paper {
   margin: 3vh;
-  margin-top: 20vh;
+  margin-top: 15vh;
 }
 
 .submit {
   margin: 3vh;
-  height: 7vh;
+  height: 6.5vh;
+  
 }
+
 
 content {
   flexgrow: 1;

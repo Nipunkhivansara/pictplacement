@@ -43,6 +43,8 @@ const styles = (theme => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    backgroundColor:"rgb(70,70,120)",
+    outline:"none"
   },
 }));
 
@@ -265,7 +267,7 @@ class Profile extends Component {
                     {this.getStepContent(this.state.activeStep)}
                     <div className={classes.buttons}>
                       {this.state.activeStep !== 0 && (
-                        <Button onClick={this.handleBack} className={classes.button}>
+                        <Button onClick={this.handleBack} variant="contained" color="primary"className={classes.button}>
                           Back
                       </Button>
                       )}

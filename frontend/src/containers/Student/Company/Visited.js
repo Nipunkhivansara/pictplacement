@@ -145,6 +145,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import axios from "../../../axios";
+import "bootstrap/dist/css/bootstrap.css";
 //import { makeData } from "./Utils";
 
 // Import React Table
@@ -204,61 +205,61 @@ class Visited extends React.PureComponent {
     return (
       <Paper className={classes.root}>
         <Grid>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell align="centre">Sno</TableCell>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th align="centre">Sno</th>
 
-                <TableCell align="centre">Company</TableCell>
+                <th align="centre">Company</th>
                 
-                  <TableCell align="centre">CGPA</TableCell>
-                  <TableCell align="centre">Branch</TableCell>
-                  <TableCell align="centre">BEC</TableCell>
-                  <TableCell align="centre">CE</TableCell>
-                  <TableCell align="centre">BEE</TableCell>
-                  <TableCell align="centre">ENTC</TableCell>
-                  <TableCell align="centre">BEIT</TableCell>
-                  <TableCell align="centre">MECE</TableCell>
-                  <TableCell align="centre">MEEENTC</TableCell>
-                  <TableCell align="centre">MEIT</TableCell>
-                  <TableCell align="centre">M</TableCell>
-                  <TableCell align="centre">F</TableCell>
-                  <TableCell align="centre">T</TableCell>
-                  <TableCell align="centre">SALLPA</TableCell>
-                  <TableCell align="centre">VISITDATE</TableCell>
-                  <TableCell align="centre">TSALLPA</TableCell>
+                  <th align="centre">CGPA</th>
+                  <th align="centre">Branch</th>
+                  <th align="centre">BEC</th>
+                  <th align="centre">CE</th>
+                  <th align="centre">BEE</th>
+                  <th align="centre">ENTC</th>
+                  <th align="centre">BEIT</th>
+                  <th align="centre">MECE</th>
+                  <th align="centre">MEEENTC</th>
+                  <th align="centre">MEIT</th>
+                  <th align="centre">M</th>
+                  <th align="centre">F</th>
+                  <th align="centre">T</th>
+                  <th align="centre">SALLPA</th>
+                  <th align="centre">VISITDATE</th>
+                  <th align="centre">TSALLPA</th>
                   
 
                 
-              </TableRow>
-            </TableHead>
-            <TableBody>
+              </tr>
+            </thead>
+            <tbody>
               {this.state.companies.map(company => (
-                <TableRow key={company.id}>
-                  <TableCell component="th" scope="row">
+                <tr key={company.id}>
+                  <td component="th" scope="row">
                     {company.sno}
-                  </TableCell>
-                  <TableCell align="right">{company.company}</TableCell>
-                  <TableCell align="right">{company.cgpa}</TableCell>
-                  <TableCell align="right">{company.branch}</TableCell>
-                  <TableCell align="right">{company.bec}</TableCell>
-                  <TableCell align="right">{company.ce}</TableCell>
-                  <TableCell align="right">{company.bee}</TableCell>
-                  <TableCell align="right">{company.entc}</TableCell>
-                  <TableCell align="right">{company.beit}</TableCell>
-                  <TableCell align="right">{company.mece}</TableCell>
-                  <TableCell align="right">{company.meentc}</TableCell>
-                  <TableCell align="right">{company.meit}</TableCell>
-                  <TableCell align="right">{company.m}</TableCell>
-                  <TableCell align="right">{company.f}</TableCell>
-                  <TableCell align="right">{company.t}</TableCell>
-                  <TableCell align="right">{company.sal}</TableCell>
-                  <TableCell align="right">{company.vistdate}</TableCell>
-                  <TableCell align="right">{company.tsal}</TableCell>
-                </TableRow>
+                  </td>
+                  <td align="right">{company.company}</td>
+                  <td align="right">{company.cgpa}</td>
+                  <td align="right">{company.branch}</td>
+                  <td align="right">{company.bec}</td>
+                  <td align="right">{company.ce}</td>
+                  <td align="right">{company.bee}</td>
+                  <td align="right">{company.entc}</td>
+                  <td align="right">{company.beit}</td>
+                  <td align="right">{company.mece}</td>
+                  <td align="right">{company.meentc}</td>
+                  <td align="right">{company.meit}</td>
+                  <td align="right">{company.m}</td>
+                  <td align="right">{company.f}</td>
+                  <td align="right">{company.t}</td>
+                  <td align="right">{company.sal}</td>
+                  <td align="right">{company.vistdate}</td>
+                  <td align="right">{company.tsal}</td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </Grid>
       </Paper>
     );

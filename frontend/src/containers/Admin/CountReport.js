@@ -10,6 +10,7 @@ import axios from "../../axios";
 import { fontSize } from "@material-ui/system";
 import Button from "@material-ui/core/Button";
 import ReactToPrint from "react-to-print";
+import "bootstrap/dist/css/bootstrap.css";
 
 const styles = theme => ({
   palette: {
@@ -24,7 +25,9 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1),
     margin: "auto",
-    left: "47%"
+    left: "47%",
+    backgroundColor:"rgb(70,70,120)",
+    outline:"none"
   },
   table: {
     margin: "auto",
@@ -81,24 +84,24 @@ class CountReport extends Component {
           content={() => this.componentRef}
         />
         <Paper ref={el => (this.componentRef = el)} r className={classes.root}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Company Name</TableCell>
-                <TableCell align="right">Number of Students placed</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
+          <table  className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Company Name</th>
+                <th align="right">Number of Students placed</th>
+              </tr>
+            </thead>
+            <tbody>
               {this.state.companies.map(company => (
-                <TableRow key={company.id}>
-                  <TableCell component="th" scope="row">
+                <tr key={company.id}>
+                  <td component="th" scope="row">
                     {company.name}
-                  </TableCell>
-                  <TableCell align="right">{company.count}</TableCell>
-                </TableRow>
+                  </td>
+                  <td align="right">{company.count}</td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </Paper>
       </div>
     );

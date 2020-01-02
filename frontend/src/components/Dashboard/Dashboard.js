@@ -16,18 +16,22 @@ import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
+
+
   appBar: {
     zIndex: theme.zIndex.drawer + 1
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    
   },
   drawerPaper: {
     width: drawerWidth
@@ -41,28 +45,41 @@ const useStyles = makeStyles(theme => ({
     marginLeft: "auto",
     fontWeight: "bold",
     fontSize: "1rem"
-  }
+  },
+  
 }));
 
 function ClippedDrawer(props) {
   const classes = useStyles();
 
+  
   const logoutHandler = () => {
     localStorage.removeItem("token");
     props.history.push("/");
   };
   const drawerListNames = Object.keys(props.drawerList);
 
-  const buttonHandler = text => {
+  const buttonHandler = text => {  
+    
     props.history.push(props.match.path + "/" + props.drawerList[text][0]);
   };
 
   return (
     <div className={classes.root}>
+       <div className="overlay" 
+          style={{position: "fixed", 
+          top: "0",
+          left: "0",  
+          width: "100%",
+          height: "100%", 
+          zIndex:"-5",
+         backgroundColor: "rgba(10,10,10,0.2)"
+          }}>
+          </div>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}  style={{backgroundColor:"rgb(70,70,120)"}}>
         <Toolbar>
-          <Typography variant="h6" noWrap>
+          <Typography style={{  fontSize:"20px" }}variant="h6" noWrap>
             PICT PLACEMENT
           </Typography>
           <Typography variant="h6" style={{ marginLeft: "auto" }}>
@@ -74,6 +91,7 @@ function ClippedDrawer(props) {
             onClick={() => logoutHandler(props)}
             className={classes.logout}
             color="inherit"
+            style={{backgroundColor:"rgb(85,85,135)",outline:"none"}}
           >
             Logout
           </Button>
@@ -85,16 +103,20 @@ function ClippedDrawer(props) {
         classes={{
           paper: classes.drawerPaper
         }}
+        
       >
         <div className={classes.toolbar} />
         <List>
           {drawerListNames.map((text, index) => (
             <div key={text}>
               <ListItem
+            
                 button
                 onClick={() => {
                   buttonHandler(text);
+                  
                 }}
+              
               >
                 <ListItemIcon>{props.drawerList[text][1]}</ListItemIcon>
                 <ListItemText primary={text} />

@@ -6,7 +6,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import axios from '../../../axios'
+import axios from '../../../axios';
+import "bootstrap/dist/css/bootstrap.css";
 
 const styles = (theme => ({
 
@@ -45,30 +46,30 @@ class Current extends Component {
         const { classes } = this.props;
         return (
             <Paper className={classes.root}>
-                <Table className={classes.table}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Criteria</TableCell>
-                            <TableCell align="right">Average Salary</TableCell>
-                            <TableCell align="right">Tentative Date</TableCell>
-                            <TableCell align="right">Skills</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
+                <table className="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th align="right">Criteria</th>
+                            <th align="right">Average Salary</th>
+                            <th align="right">Tentative Date</th>
+                            <th align="right">Skills</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         {this.state.companies.map(company => (
-                            <TableRow key={company.id}>
-                                <TableCell component="th" scope="row">
+                            <tr key={company.id}>
+                                <td component="th" scope="row">
                                     {company.name}
-                                </TableCell>
-                                <TableCell align="right">{company.criteria}</TableCell>
-                                <TableCell align="right">{company.package_lpa}</TableCell>
-                                <TableCell align="right">{company.final_date}</TableCell>
-                                <TableCell align="right">{company.skills.join(", ")}</TableCell>
-                            </TableRow>
+                                </td>
+                                <td align="right">{company.criteria}</td>
+                                <td align="right">{company.package_lpa}</td>
+                                <td align="right">{company.final_date}</td>
+                                <td align="right">{company.skills.join(", ")}</td>
+                            </tr>
                         ))}
-                    </TableBody>
-                </Table>
+                    </tbody>
+                </table>
             </Paper>
         );
     }

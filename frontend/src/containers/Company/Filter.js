@@ -21,6 +21,7 @@ import { ButtonGroup } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
 import ReactToPrint from 'react-to-print';
 import Switch from '@material-ui/core/Switch';
+import "bootstrap/dist/css/bootstrap.css";
 
 const styles = theme => ({
     palette: {
@@ -35,9 +36,6 @@ const styles = theme => ({
         alignItems: "center",
         margin: "auto"
     },
-    table: {
-        minWidth: 650
-    },
     text: {
         textAlign: "center"
     },
@@ -47,7 +45,9 @@ const styles = theme => ({
     },
     button: {
         margin: theme.spacing(1),
-        margin: "auto"
+        margin: "auto",
+        backgroundColor:"rgb(70,70,120)",
+        outline:"none"
     },
     group: {
         margin: theme.spacing(1, 0)
@@ -126,7 +126,6 @@ class Filter extends React.Component {
         const { classes } = this.props;
         return (
             <React.Fragment>
-
                 <Paper className={classes.root}>
                     <FormControl component="fieldset" className={classes.formControl}>
                         <FormLabel component="legend" className={classes.text}>
@@ -209,32 +208,32 @@ class Filter extends React.Component {
                 <br></br>
                 <div>
                     <Paper className={classes.root}>
-                        <Table className={classes.table} id="printArea">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell >ID</TableCell>
-                                    <TableCell align="right">Name</TableCell>
-                                    <TableCell align="right">Roll Number</TableCell>
-                                    <TableCell align="right">SGPA</TableCell>
-                                    <TableCell align="right">10th Percentage</TableCell>
-                                    <TableCell align="right">12th Percentage</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
+                        <table className="table table-bordered" id="printArea">
+                            <thead>
+                                <tr>
+                                    <th >ID</th>
+                                    <th align="right">Name</th>
+                                    <th align="right">Roll Number</th>
+                                    <th align="right">SGPA</th>
+                                    <th align="right">10th Percentage</th>
+                                    <th align="right">12th Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 {this.state.temp.map(s => (
-                                    <TableRow key={s.roll}>
-                                        <TableCell component="th" scope="row">
+                                    <tr key={s.roll}>
+                                        <td component="th" scope="row">
                                             {s.collegeId}
-                                        </TableCell>
-                                        <TableCell align="right">{s.student.firstName}</TableCell>
-                                        <TableCell align="right">{s.roll_no}</TableCell>
-                                        <TableCell align="right">{s.sgpaTEFS}</TableCell>
-                                        <TableCell align="right">{s.percentageTenth}</TableCell>
-                                        <TableCell align="right">{s.percentageTwelfth}</TableCell>
-                                    </TableRow>
+                                        </td>
+                                        <td align="right">{s.student.firstName}</td>
+                                        <td align="right">{s.roll_no}</td>
+                                        <td align="right">{s.sgpaTEFS}</td>
+                                        <td align="right">{s.percentageTenth}</td>
+                                        <td align="right">{s.percentageTwelfth}</td>
+                                    </tr>
                                 ))}
-                            </TableBody>
-                        </Table>
+                            </tbody>
+                        </table>
                     </Paper>
                 </div>
             </React.Fragment>

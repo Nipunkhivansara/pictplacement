@@ -235,7 +235,8 @@ export default function AddUser() {
                         </TextField>
                     </Grid>
                     <Grid item xs={12} style={{ marginTop: "3vh" }}>
-                        <Button onClick={submitHandler} size="large" variant="contained" color="primary">Submit</Button>
+                        <Button onClick={submitHandler} size="large" variant="contained" color="primary"
+                        style={{backgroundColor:"rgb(70,70,120)",outline:"none"}}>Submit</Button>
                     </Grid>
                 </Grid>
             </Paper>
@@ -255,7 +256,7 @@ export default function AddUser() {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Button 
-                            style={{marginTop:"10px",marginLeft:"50%"}}
+                            style={{marginTop:"10px",marginLeft:"50%",backgroundColor:"rgb(70,70,120)",outline:"none"}}
                             onClick={submitSkill} 
                             variant="contained" 
                             color="primary">
@@ -277,7 +278,7 @@ export default function AddUser() {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Button 
-                            style={{marginTop:"10px",marginLeft:"50%"}}
+                            style={{marginTop:"10px",marginLeft:"50%",backgroundColor:"rgb(70,70,120)",outline:"none"}}
                             onClick={submitCity} 
                             variant="contained" 
                             color="primary">

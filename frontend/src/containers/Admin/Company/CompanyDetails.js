@@ -26,6 +26,8 @@ const styles = (theme => ({
     },
     printButton: {
         // marginTop: '2vh'
+        backgroundColor:"rgb(70,70,120)",
+        outline:"none"
     }
 }));
 

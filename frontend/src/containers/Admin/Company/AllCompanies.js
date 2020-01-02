@@ -28,6 +28,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import WarningIcon from "@material-ui/icons/Warning";
+import "bootstrap/dist/css/bootstrap.css";
 
 import {
   MuiPickersUtilsProvider,
@@ -67,7 +68,9 @@ const styles = theme => ({
   },
   button: {
     // margin: theme.spacing(1),
-    margin: "auto"
+    margin: "auto",
+    backgroundColor:"rgb(70,70,120)",
+    outline:"none"
   },
   tableText: {},
   classGrid: {
@@ -353,6 +356,7 @@ class AllCompanies extends Component {
     };
     return (
       <React.Fragment>
+     
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
@@ -418,36 +422,36 @@ class AllCompanies extends Component {
           </Grid>
         </Paper>
         <Paper className={classes.root}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow style={{ height: "8vh" }}>
-                <TableCell className={classes.tableText}>
+          <table className="table table-bordered">
+            <thead>
+              <tr style={{ height: "8vh" }}>
+                <th className={classes.tableText}>
                   Company Name
-                </TableCell>
-                <TableCell className={classes.tableText} align="right">
+                </th>
+                <th className={classes.tableText} align="right">
                   Preffered Date
-                </TableCell>
-                <TableCell className={classes.tableText} align="center">
+                </th>
+                <th className={classes.tableText} align="center">
                   Choose final date
-                </TableCell>
-                <TableCell className={classes.tableText} align="left">
+                </th>
+                <th className={classes.tableText} align="left">
                   Accept
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
               {this.state.companies.map((company, index) => (
-                <TableRow key={company.id} className={classes.tableRow}>
-                  <TableCell
+                <tr key={company.id} className={classes.tr}>
+                  <td
                     style={{ color: "#3f51b5" }}
                     component="th"
                     scope="row"
                     onClick={() => this.companyHandler(company)}
                   >
                     <u>{company.name}</u>
-                  </TableCell>
-                  <TableCell align="right">{company.start_date}</TableCell>
-                  <TableCell align="right" id="btncol">
+                  </td>
+                  <td align="right">{company.start_date}</td>
+                  <td align="right" id="btncol">
                     {" "}
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                       <KeyboardDatePicker
@@ -463,8 +467,8 @@ class AllCompanies extends Component {
                         shouldDisableDate={retrieve}
                       />
                     </MuiPickersUtilsProvider>
-                  </TableCell>
-                  <TableCell>
+                  </td>
+                  <td>
                     <Button
                       className={classes.button}
                       variant="contained"
@@ -473,11 +477,11 @@ class AllCompanies extends Component {
                     >
                       Allot
                     </Button>
-                  </TableCell>
-                </TableRow>
+                  </td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </Paper>
       </React.Fragment>
     );

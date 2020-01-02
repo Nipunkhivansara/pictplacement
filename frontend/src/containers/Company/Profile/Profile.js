@@ -77,6 +77,8 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         margin: theme.spacing(1),
+        backgroundColor:"rgb(70,70,120)",
+        outline: "none"
     },
     textField: {
         marginLeft: theme.spacing(1),
@@ -109,6 +111,7 @@ function MySnackbarContentWrapper(props) {
     const Icon = variantIcon[variant];
 
     return (
+        
         <SnackbarContent
             className={clsx(classes[variant], className)}
             aria-describedby="client-snackbar"
@@ -384,6 +387,7 @@ function Profile(props) {
 
     return (
         <React.Fragment>
+            
             <Snackbar
                 anchorOrigin={{
                     vertical: 'bottom',
@@ -644,7 +648,7 @@ function Profile(props) {
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} align="right" onClick={submitHandler}>
-                                <Button size="large" variant="contained" color="primary" disabled={disabled}>Submit</Button>
+                                <Button className={classes.button} size="large" variant="contained" color="primary" disabled={disabled}>Submit</Button>
                             </Grid>
                         </Grid>
 

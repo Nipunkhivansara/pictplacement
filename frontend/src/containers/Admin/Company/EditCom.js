@@ -351,7 +351,8 @@ export default function AddVisited() {
                         </Grid>
 
                         <Grid item xs={12} align="right">
-                            <Button size="large" variant="contained" color="primary" onClick={submitHandler}>Submit</Button>
+                            <Button size="large" variant="contained" color="primary" onClick={submitHandler}
+                            style={{backgroundColor:"rgb(70,70,120)",outline:"none"}}>Submit</Button>
                         </Grid>
                     </Grid>
                 </form>
@@ -589,7 +590,8 @@ export default function AddVisited() {
                             </FormControl>
                     </Grid>
                     <Grid item xs={12} align="right" onClick={submitHandler2}>
-                        <Button size="large" variant="contained" color="primary">Submit</Button>
+                        <Button size="large" variant="contained" color="primary"
+                        style={{backgroundColor:"rgb(70,70,120)",outline:"none"}}>Submit</Button>
                     </Grid>
                 </Grid>
             </form>

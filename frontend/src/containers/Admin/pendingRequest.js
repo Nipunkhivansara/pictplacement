@@ -17,6 +17,7 @@ import Button from "@material-ui/core/Button";
 import axios from "../../axios";
 import { ButtonGroup } from "@material-ui/core";
 import FormGroup from '@material-ui/core/FormGroup';
+import "bootstrap/dist/css/bootstrap.css";
 
 const styles = theme => ({
   palette: {
@@ -43,7 +44,9 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(1),
     marginTop:theme.spacing(5),
-    marginLeft:theme.spacing(115)
+    marginLeft:theme.spacing(115),
+    backgroundColor:"rgb(70,70,120)",
+    outline:"none"
   },
   group: {
     margin: theme.spacing(1, 0)
@@ -103,26 +106,26 @@ class BranchReport extends Component {
         <br></br>
         <br></br>
         <Paper className={classes.root}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>Roll Number</TableCell>
-                <TableCell align="right">Student Name</TableCell>
-                <TableCell align="right">Company Name</TableCell>
-                <TableCell align="right">Package LPA</TableCell>
-                <TableCell align="right">Location</TableCell>
-                <TableCell align="right">Approve</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                <th>Roll Number</th>
+                <th align="right">Student Name</th>
+                <th align="right">Company Name</th>
+                <th align="right">Package LPA</th>
+                <th align="right">Location</th>
+                <th align="right">Approve</th>
+              </tr>
+            </thead>
+            <tbody>
               {this.state.students.map((s,index) => (
-                <TableRow key={s.roll}>
-                     <TableCell align="right">{s.roll}</TableCell>
-                  <TableCell align="right">{s.stu_name}</TableCell>
-                  <TableCell align="right">{s.comp_name}</TableCell>
-                  <TableCell align="right">{s.package_lpa}</TableCell>
-                  <TableCell align="right">{s.location}</TableCell>
-              <TableCell align="right"><FormControlLabel
+                <tr key={s.roll}>
+                     <td align="right">{s.roll}</td>
+                  <td align="right">{s.stu_name}</td>
+                  <td align="right">{s.comp_name}</td>
+                  <td align="right">{s.package_lpa}</td>
+                  <td align="right">{s.location}</td>
+              <td align="right"><FormControlLabel
                 control={
                   <Checkbox
                   style={{marginLeft:"5vw"}}
@@ -132,11 +135,11 @@ class BranchReport extends Component {
                   />
                 }
                 label="Accept"
-              /></TableCell>
-                </TableRow>
+              /></td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
          
         </Paper>
         <Button
