@@ -96,6 +96,7 @@ class BranchReport extends Component {
 
   handleChange = index => event => {
     let s = this.state.students[index]
+    console.log(s);
     s.status = event.target.checked
     let a = [...this.state.students]
     a[index] = s
@@ -112,13 +113,17 @@ class BranchReport extends Component {
     var a = []
     for (i = 0; i < this.state.students.length; i++) {
       if (this.state.students[i].status === true)
-        a.push(this.state.students[i].roll);
+        a.push(this.state.students[i].count);
     }
     console.log(a);
-    axios.post("/getStatusOfPlaced", a).catch((error) => {
-      console.log(error);
-    });;
-    window.location.reload(false);
+    axios.post("/getStatusOfPlaced", a)
+      .then((response) => {
+        console.log(response.data);
+        window.location.reload(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -141,10 +146,10 @@ class BranchReport extends Component {
             </thead>
             <tbody>
               {this.state.students.map((s, index) => (
-                <tr key={s.roll}>
-                  <td>{s.roll}</td>
+                <tr key={s.id}>
+                  <td>{s.id}</td>
                   <td>{s.stu_name}</td>
-                  <td>{s.comp_name}</td>
+                  <td>{s.idname}</td>
                   <td>{s.package_lpa}</td>
                   <td>{s.location}</td>
                   <td><FormControlLabel

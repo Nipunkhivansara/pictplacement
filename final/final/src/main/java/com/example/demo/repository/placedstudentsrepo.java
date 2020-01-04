@@ -25,6 +25,13 @@ public interface placedstudentsrepo extends JpaRepository<placedstudents, Intege
 	@Transactional
 	@Query(value = "SELECT id FROM placedstudents WHERE comp_id = ? ", nativeQuery = true)
 	public List<Integer> findByComp(int id);
+	
+	@Query(value="Select id from placedstudents where count in ?1",nativeQuery=true)
+	public List<Integer> findByCount(List<Integer>counts);
+	
+	@Query(value = "SELECT id FROM placedstudents WHERE comp_id = ? and pl_status=0", nativeQuery = true)
+	public List<Integer> findShortlisted(int id);
+	
 
 	@Query(value = "UPDATE placedstudents SET pl_status=1 WHERE id IN ?1 AND comp_id = ?2", nativeQuery = true)
 	public void findByCompIdAndStudent(List<Integer> a, int cid);
@@ -36,4 +43,18 @@ public interface placedstudentsrepo extends JpaRepository<placedstudents, Intege
 	@Transactional
 	@Query(value = "DELETE FROM placedstudents WHERE id = ?1 AND pl_status <> 2", nativeQuery = true)
 	public void deleteStuPlaced(int a);
+	
+	@Transactional
+	@Modifying
+	@Query(value = "update placedstudents set pl_status=2 where count IN ?1", nativeQuery = true)
+	public void placeByAdmin(List<Integer>counts);
+	
+	@Query(value = "select id from placedstudents where pl_status=2 and comp_id=?1",nativeQuery=true)
+	public List<Integer> findPlacedByCompany(int id);
+
+	@Query(value="select * from placedstudents where pl_status=1 and id not in ?1",nativeQuery = true)
+	public List<placedstudents>findAllExceptPlaced(List<Integer>ids);
+	
+	@Query(value="select * from placedstudents where pl_status=1",nativeQuery = true)
+	public List<placedstudents>findPending();
 }

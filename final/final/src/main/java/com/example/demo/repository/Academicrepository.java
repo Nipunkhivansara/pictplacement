@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.type.TrueFalseType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -32,19 +33,29 @@ public interface Academicrepository extends JpaRepository<Academicdetails, Integ
 
 	@Modifying
 	@Transactional
-
 	@Query(value = "update academic_details set placed=" + "true" + " where college_id IN ?1", nativeQuery = true)
 	public void finalplaced(List<Integer> id);
 
 	@Query(value = "SELECT * FROM academic_details WHERE college_id NOT IN ?1 AND placed = false", nativeQuery = true)
 	public List<Academicdetails> findExceptTheseStu(List<Integer> id);
 
-	@Query(value = "SELECT * FROM academic_details as ad WHERE ad.college_id  IN ?1  AND ad.placed = false AND ad.college_id IN (SELECT ps.id FROM placedstudents as ps WHERE ps.pl_status=0 AND ps.comp_id=?2)", nativeQuery = true)
-	public List<Academicdetails> findTheseStu(List<Integer> id, int cid);
+	@Query(value = "SELECT * FROM academic_details WHERE placed = false", nativeQuery = true)
+	public List<Academicdetails> findNotPlaced();
+	
+	@Query(value = "SELECT college_id FROM academic_details WHERE placed = true", nativeQuery = true)
+	public List<Integer> findPlacedIds();
+
+	@Query(value = "SELECT * FROM academic_details  WHERE college_id IN ?1", nativeQuery = true)
+	public List<Academicdetails> findTheseStu(List<Integer> id);
 
 	@Query(value = "SELECT * FROM academic_details as ad WHERE ad.college_id  IN ?1  AND ad.placed = false AND ad.college_id IN (SELECT ps.id FROM placedstudents as ps WHERE ps.pl_status=1 AND ps.comp_id=?2)", nativeQuery = true)
 	public List<Academicdetails> findPlacedByComp(List<Integer> id, int cid);
 	
 	@Query(value = "SELECT * FROM academic_details as ad WHERE ad.college_id  IN ?1  AND ad.placed = true AND ad.college_id IN (SELECT ps.id FROM placedstudents as ps WHERE ps.pl_status=2 AND ps.comp_id=?2)", nativeQuery = true)
 	public List<Academicdetails> findFinalPlacedByComp(List<Integer> id, int cid);
+	
+	@Transactional
+	@Modifying
+	@Query(value = "update academic_details set placed=true where college_id in ?1",nativeQuery=true)
+	public void place(List<Integer>id);
 }

@@ -56,7 +56,7 @@ const styles = theme => ({
 
 
 class Filter extends React.Component {
-  
+
     state = {
         students: [],
         temp: [],
@@ -66,9 +66,9 @@ class Filter extends React.Component {
         active_backlogs: true,
         passive_backlogs: true,
         internship: 0,
-        x:[]
+        x: []
     }
-    
+
 
 
 
@@ -76,6 +76,8 @@ class Filter extends React.Component {
         axios.post('/filter', null, { params: { comp_id: localStorage.getItem('token') } })
             .then((response) => {
                 console.log(response.data);
+                // let l = (response.data).sort((a,b) => a.collegeId>b.collegeId?1:-1)
+                // console.log(l);
                 this.setState({
                     students: response.data,
                     temp: response.data,
@@ -84,7 +86,7 @@ class Filter extends React.Component {
             .catch((error) => {
                 console.log(error);
             })
-        
+
     }
 
     handleChange = (name) => (event) => {
@@ -126,18 +128,21 @@ class Filter extends React.Component {
         });
     }
     clickHandlerForAccept = () => {
-        var i=0;  
-        var a = []  
-        for(i=0;i<this.state.x.length;i++){
-            if(this.state.x[i].status===true)
-            a.push(this.state.x[i].roll.toString());
+        var i = 0;
+        var a = []
+        for (i = 0; i < this.state.x.length; i++) {
+            if (this.state.x[i].status === true)
+                a.push(this.state.x[i].roll.toString());
         }
-        let comp_id=localStorage.getItem("token");
+        let comp_id = localStorage.getItem("token");
         a.push(comp_id)
-        axios.post("/selectByCompany", a).catch((error) => {
-            console.log(error);
-        });;
-        window.location.reload(true);
+        axios.post("/selectByCompany", a)
+            .then((response) => {
+                window.location.reload(true);
+            })
+            .catch((error) => {
+                console.log(error);
+            });;
     };
 
 
@@ -257,7 +262,7 @@ class Filter extends React.Component {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {this.state.temp.map((s,index) => (
+                                {this.state.temp.map((s, index) => (
                                     <TableRow key={s.roll}>
                                         <TableCell component="th" scope="row">
                                             {s.collegeId}

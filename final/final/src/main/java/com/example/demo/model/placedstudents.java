@@ -19,6 +19,14 @@ public class placedstudents {
 	@JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false)
 	private users user;
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public users getUser() {
 		return user;
 	}

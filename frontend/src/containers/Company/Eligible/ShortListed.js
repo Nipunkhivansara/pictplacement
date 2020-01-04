@@ -109,10 +109,13 @@ class ShortListed extends React.Component {
         }
         let comp_id=localStorage.getItem("token");
         a.push(comp_id)
-        axios.post("/PlacedByCompany", a).catch((error) => {
-            console.log(error);
-        });;
-        window.location.reload(true);
+        axios.post("/PlacedByCompany", a)
+            .then((response) => {
+                window.location.reload(true);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
 

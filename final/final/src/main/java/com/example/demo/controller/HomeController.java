@@ -160,8 +160,13 @@ public class HomeController {
 	}
 
 	@PostMapping("/fetchToAdminPendingStudents")
-	public List<AdminPlaced> fetch() {
-		return userservice.adminplaced();
+	public List<placedstudents> fetch() {
+		List<Integer>stu_id = academicrepo.findPlacedIds();
+		System.out.println(stu_id);
+		if(!stu_id.isEmpty()) {
+			return placedrepo.findAllExceptPlaced(stu_id);
+		}
+		return placedrepo.findPending();
 	}
 
 	@PostMapping("/fetchToCompanyEligibleStudents")
@@ -173,15 +178,19 @@ public class HomeController {
 	public void ChangeStatusOfPlaced(@RequestBody List<Integer> a) {
 		placedstudents p;
 		Academicdetails ad;
+		System.out.println(a);
+		placedrepo.placeByAdmin(a);
+		System.out.println(placedrepo.findByCount(a));
+		academicrepo.place(placedrepo.findByCount(a));
 		
-		for (int i = 0; i < a.size(); i++) {
-			p = placedrepo.findById(a.get(i)).get();
-			p.setPL_status(2);
-			placedrepo.deleteStuPlaced(p.getId());
-			ad = academicrepo.findById(p.getId()).get();
-			ad.setPlaced(true);
-			placedrepo.save(p);
-		}
+//		for (int i = 0; i < a.size(); i++) {
+//			p = placedrepo.findById(a.get(i)).get();
+//			p.setPL_status(2);
+//			placedrepo.deleteStuPlaced(p.getId());
+//			ad = academicrepo.findById(p.getId()).get();
+//			ad.setPlaced(true);
+//			placedrepo.save(p);
+//		}
 		//placedrepo.deleteStuPlaced(a);
 		//userservice.mail(a);
 
@@ -211,6 +220,7 @@ public class HomeController {
 	public void PlacedByCompany(@RequestBody List<String> myParams) {
 		// myParams.size() -1 will contain the company id
 		int len = myParams.size();
+		System.out.println("params"+myParams);
 		int comp_id = Integer.parseInt(myParams.get(len - 1));
 		myParams.remove(len-1);
 		List<Integer>p  = new ArrayList<Integer>();
@@ -258,13 +268,10 @@ public class HomeController {
 	@PostMapping("/short-listed")
 	public List<Academicdetails> shortlisted_details(@RequestParam("comp_id") int id) {
 		List<Integer> stu_id;
-		stu_id = placedrepo.findByComp(id);
+		stu_id = placedrepo.findShortlisted(id);
 		System.out.println(stu_id);
-		for(Academicdetails a:academicrepo.findTheseStu(stu_id,id)) {
-			System.out.println(a.getCollegeId());
-		}
 		if (!stu_id.isEmpty()) {
-			return academicrepo.findTheseStu(stu_id,id);
+			return academicrepo.findTheseStu(stu_id);
 		}
 		List<Academicdetails> a = new ArrayList<Academicdetails>();
 		//alternate solution for return when false
@@ -275,11 +282,11 @@ public class HomeController {
 	public List<Academicdetails> filtered_details(@RequestParam("comp_id") int id) {
 		List<Integer> stu_id;
 		stu_id = placedrepo.findByComp(id);
-		System.out.println(stu_id);
+		System.out.println("ids"+stu_id);
 		if (!stu_id.isEmpty()) {
 			return academicrepo.findExceptTheseStu(stu_id);
 		}
-		return userservice.findAllstu();
+		return academicrepo.findNotPlaced();
 	}
 	
 	@PostMapping("/PendingSelectedByCompany")
@@ -297,12 +304,14 @@ public class HomeController {
 	@PostMapping("/FinalPlaced")
 	public List<Academicdetails> PlacedByAdminToComp(@RequestParam("comp_id") int id) {
 		List<Integer> stu_id;
-		stu_id = placedrepo.findByComp(id);
-		if (!stu_id.isEmpty()) {
-			return academicrepo.findFinalPlacedByComp(stu_id,id);
-		}
-		List<Academicdetails> a = new ArrayList<Academicdetails>();
+		stu_id = placedrepo.findPlacedByCompany(id);
+		return academicrepo.findTheseStu(stu_id);
+//		stu_id = placedrepo.findByComp(id);
+//		if (!stu_id.isEmpty()) {
+//			return academicrepo.findFinalPlacedByComp(stu_id,id);
+//		}
+//		List<Academicdetails> a = new ArrayList<Academicdetails>();
 		//alternate solution for return when false
-		return a;
+//		return a;
 	}
 }
